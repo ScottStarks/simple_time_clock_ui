@@ -1,0 +1,41 @@
+<section class="login p-fixed d-flex text-center bg-primary common-img-bg">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+  
+          <div class="login-card card-block auth-body mr-auto ml-auto">
+            <form [formGroup]="LoginForm" (ngSubmit)="onLogin()">
+              <div class="auth-box">
+                <div class="row m-b-20">
+                  <div class="col-md-12">
+                    <h3 class="text-left txt-primary">Sign In</h3>
+                  </div>
+                </div>
+                <hr />
+                <div class="input-group">
+                  <input type="text" formControlName="employeeId" class="form-control" placeholder="Enter Employee Id" maxlength="5" [ngClass]="{ 'is-invalid': isSubmitted && f['employeeId'].errors }" />
+                  <div *ngIf="isSubmitted && f['employeeId'].errors" class="invalid-feedback">
+                    <div *ngIf="f['employeeId'].errors['required']">Employee Id is required</div>
+                    <span class="md-line"></span>
+                  </div>
+                </div>
+  
+                <div class="row m-t-25 text-left">
+                  <div class="col-12">
+                    <div class="forgot-phone text-right f-right">
+                      <a [routerLink]="['/auth/register']" class="text-right f-w-600 text-inverse">Register</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="row m-t-30">
+                  <div class="col-md-12">
+                    <button type="submit" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20">Sign
+                      in</button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
