@@ -1,5 +1,9 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { HttpService } from 'src/app/core/helpers/http.service';
+import { BaseResponse } from 'src/app/core/models/base-response';
+import { ShiftDataRequest } from '../../models/request/shift-data-request';
+import { ShiftDataResponse } from '../../models/response/shift-data-response';
 
 @Injectable({
   providedIn: 'root'
@@ -8,27 +12,31 @@ export class ActivityService {
 
   constructor(private httpService: HttpService) { }
 
-  startShift(){
+  getShiftData(employeeId: string = ""): Observable<BaseResponse<Array<ShiftDataResponse>>> {
+    return this.httpService.getAll<BaseResponse<Array<ShiftDataResponse>>>("activity/GetShiftData?employeeId=" + employeeId)
+  }
+
+  startShift(): Observable<BaseResponse<ShiftDataResponse>> {
     return this.httpService.post("activity/startshift");
   }
 
-  startBreak(){
-    return this.httpService.post("activity/startbreak");
+  startBreak(model: ShiftDataRequest) {
+    return this.httpService.post("activity/startbreak", model);
   }
 
-  endBreak(){
-    return this.httpService.post("activity/endbreak");
+  endBreak(model: ShiftDataRequest) {
+    return this.httpService.post("activity/endbreak", model);
   }
 
-  startLunch(){
-    return this.httpService.post("activity/startlunch");
+  startLunch(model: ShiftDataRequest) {
+    return this.httpService.post("activity/startlunch", model);
   }
 
-  endLunch(){
-    return this.httpService.post("activity/endlunch");
+  endLunch(model: ShiftDataRequest) {
+    return this.httpService.post("activity/endlunch", model);
   }
 
-  endShift(){
-    return this.httpService.post("activity/startShift");
+  endShift(model: ShiftDataRequest) {
+    return this.httpService.post("activity/endshift", model);
   }
 }

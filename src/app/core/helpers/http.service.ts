@@ -14,8 +14,8 @@ export class Parameter {
 
 interface IHttpMethods {
   get<T>(url: string, id?: number): Observable<T>;
-  // getAll<T>(url: string, params?: Parameter): Observable<T[]>;
-  getAllById<T>(url: string, id?: number): Observable<T[]>;
+  getAll<T>(url: string, params?: Parameter): Observable<T>;
+  getAllById<T>(url: string, id?: string): Observable<T>;
   post(url: string, data: any): Observable<any>;
   delete(url: string, id: number): Observable<any>;
 }
@@ -36,16 +36,18 @@ export class HttpService implements IHttpMethods {
         return response;
       });
   }
-  // getAll<T>(url: string, params?: Parameter | undefined): Observable<T[]> {
-  //   url = this.generateUrl(url);
-  //   var headers = this.setHeaders(params);
-  //   return this.http
-  //     .get(url, { headers: headers })
-  //     .map((response: T[]) => {
-  //       return response;
-  //     });
-  // }
-  getAllById<T>(url: string, id?: number | undefined): Observable<T[]> {
+
+  getAll<T>(url: string, params?: Parameter | undefined): Observable<T> {
+    url = this.generateUrl(url);
+    var headers = this.setHeaders(params);
+    return this.http
+      .get(url, { headers: headers })
+      .pipe((response: any) => {
+        return response;
+      });
+  }
+
+  getAllById<T>(url: string, id?: string): Observable<T> {
     var headers = this.setHeaders();
 
     url = this.generateUrl(url) + "/" + id;
@@ -54,6 +56,8 @@ export class HttpService implements IHttpMethods {
         return response;
       });
   }
+
+
   post(url: string, data: any = null): Observable<any> {
     var headers = this.setHeaders();
     url = this.generateUrl(url);
@@ -63,6 +67,8 @@ export class HttpService implements IHttpMethods {
     }
     return this.http.post(url, body, { headers: headers });
   }
+
+
   delete(url: string, id: number): Observable<any> {
     var headers = this.setHeaders();
     url = this.generateUrl(url) + "/" + id;
@@ -81,7 +87,7 @@ export class HttpService implements IHttpMethods {
 
     if (getAuth != null) {
       headers = headers.set('EmployeeId', getAuth.employeeId);
-      headers = headers.set('authorization', "Bearer " + getAuth.tokens.Token);
+      headers = headers.set('authorization', "Bearer " + getAuth.tokens.token);
     }
 
     return headers;

@@ -3,14 +3,11 @@ import { RouterModule, Routes } from '@angular/router';
 import { ReportComponent } from './pages/report/report.component';
 import { WorkingShiftComponent } from './pages/working-shift/working-shift.component';
 
-const routes: Routes = [{
-  path: '',
-  component: WorkingShiftComponent
-},
-{
-  path: 'secure/activity/report',
-  component: ReportComponent
-}];
+const routes: Routes = [
+  { path: '', redirectTo: 'workingshift', pathMatch: 'full' },
+  { path: 'workingshift', component: WorkingShiftComponent },
+  { path: 'report', component: ReportComponent }
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

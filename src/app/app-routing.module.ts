@@ -12,7 +12,7 @@ const routes: Routes = [
     loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
   },
   {
-    path:'secure/activity/workingshift',
+    path:'secure/activity',
     loadChildren:()=> import('./secure/activity/activity.module').then(m => m.ActivityModule),
     canActivate:[AuthGuard]
   }

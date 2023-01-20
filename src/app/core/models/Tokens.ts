@@ -1,9 +1,9 @@
 export class Tokens {
   constructor(init: Partial<Tokens>) {
     Object.assign(this, init);
-    this.Token = "";
-    this.RefreshToken = "";
+    this.token = "";
+    this.refreshToken = "";
   }
-  public Token: string;
-  public RefreshToken: string;
+  public token: string;
+  public refreshToken: string;
 }

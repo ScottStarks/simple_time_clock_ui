@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { ActivityRoutingModule } from './activity-routing.module';
 import { WorkingShiftComponent } from './pages/working-shift/working-shift.component';
 import { ReportComponent } from './pages/report/report.component';
+import {TableModule} from 'primeng/table';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { ReportComponent } from './pages/report/report.component';
   ],
   imports: [
     CommonModule,
-    ActivityRoutingModule
+    ActivityRoutingModule,
+    TableModule
   ]
 })
 export class ActivityModule { }

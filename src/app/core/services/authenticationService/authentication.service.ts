@@ -30,7 +30,7 @@ export class AuthenticationService {
 
   // // Returns true if user is logged in
   get isAuthenticated(): boolean {
-    return this.sessionService.get(this.tokenKeyword) !== null;
+    return this.sessionService.get(this.tokenKeyword) !== null && this.sessionService.get(this.tokenKeyword) !== undefined;
   }
 
   login(model: LoginRequest): Observable<AuthenticatedUser> {

@@ -1,1 +1,12 @@
-<router-outlet></router-outlet>
+<p-splitter *ngIf="isAuthenticated" stateKey="splitterKey" stateStorage="local" [panelSizes]="[14,86]">
+    <ng-template pTemplate>
+        <p-panelMenu [model]="items"></p-panelMenu>
+    </ng-template>
+    <ng-template pTemplate>
+        <router-outlet></router-outlet>
+    </ng-template>
+</p-splitter>
+
+<div *ngIf="!isAuthenticated">
+    <router-outlet></router-outlet>
+</div>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { BehaviorSubjectService } from 'src/app/core/helpers/behviour-subject.service';
 import { AuthenticatedUser } from 'src/app/core/models/authenticated-user';
 import { AuthenticationService } from 'src/app/core/services/authenticationService/authentication.service';
 import { LoginRequest } from '../../models/request/login';
@@ -16,7 +17,8 @@ export class LoginComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder, 
     private authenticationService: AuthenticationService,
-    private router: Router) {
+    private router: Router,
+    private behaviorSubjectService: BehaviorSubjectService) {
   }
 
   ngOnInit() {
@@ -35,6 +37,7 @@ export class LoginComponent implements OnInit {
       });
       this.authenticationService.login(reqModel).subscribe((data: AuthenticatedUser) => {
         if (data) {
+          this.behaviorSubjectService.setIsAuthenticated(true);
           this.router.navigateByUrl('/secure/activity/workingshift');
         }
       });
