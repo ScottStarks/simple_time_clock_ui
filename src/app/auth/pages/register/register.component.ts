@@ -22,7 +22,6 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {
     this.setFormConfiguration();
-
   }
 
   setFormConfiguration() {

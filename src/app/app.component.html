@@ -1,11 +1,15 @@
-<p-splitter *ngIf="isAuthenticated" stateKey="splitterKey" stateStorage="local" [panelSizes]="[14,86]">
-    <ng-template pTemplate>
-        <p-panelMenu [model]="items"></p-panelMenu>
-    </ng-template>
-    <ng-template pTemplate>
-        <router-outlet></router-outlet>
-    </ng-template>
-</p-splitter>
+<div *ngIf="isAuthenticated">
+    <button type="button" (click)="onLogout()">Log Out</button>
+
+    <p-splitter stateKey="splitterKey" stateStorage="local" [panelSizes]="[14,86]">
+        <ng-template pTemplate>
+            <p-panelMenu [model]="items"></p-panelMenu>
+        </ng-template>
+        <ng-template pTemplate>
+            <router-outlet></router-outlet>
+        </ng-template>
+    </p-splitter>
+</div>
 
 <div *ngIf="!isAuthenticated">
     <router-outlet></router-outlet>

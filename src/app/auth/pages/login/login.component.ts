@@ -15,13 +15,18 @@ export class LoginComponent implements OnInit {
   LoginForm!: FormGroup;
   isSubmitted = false;
 
-  constructor(private formBuilder: FormBuilder, 
+  constructor(private formBuilder: FormBuilder,
     private authenticationService: AuthenticationService,
     private router: Router,
     private behaviorSubjectService: BehaviorSubjectService) {
   }
 
   ngOnInit() {
+    //this.clearTokenFromLocalStorage();
+    this.setFormConfiguration();
+  }
+
+  setFormConfiguration() {
     this.LoginForm = this.formBuilder.group({
       employeeId: ["", [Validators.required]],
     });
@@ -33,7 +38,7 @@ export class LoginComponent implements OnInit {
     this.isSubmitted = true;
     if (this.LoginForm.valid) {
       let reqModel = new LoginRequest({
-        employeeId : this.f['employeeId'].value
+        employeeId: this.f['employeeId'].value
       });
       this.authenticationService.login(reqModel).subscribe((data: AuthenticatedUser) => {
         if (data) {

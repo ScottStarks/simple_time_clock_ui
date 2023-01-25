@@ -5,12 +5,14 @@ import { ActivityRoutingModule } from './activity-routing.module';
 import { WorkingShiftComponent } from './pages/working-shift/working-shift.component';
 import { ReportComponent } from './pages/report/report.component';
 import {TableModule} from 'primeng/table';
+import { SharedShiftDataGridComponent } from './shared/components/shared-shift-data-grid/shared-shift-data-grid.component';
 
 
 @NgModule({
   declarations: [
     WorkingShiftComponent,
-    ReportComponent
+    ReportComponent,
+    SharedShiftDataGridComponent
   ],
   imports: [
     CommonModule,
